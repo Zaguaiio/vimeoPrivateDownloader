@@ -1,3 +1,19 @@
+'''
+Copyright 2021 Jonathan Moran Silva
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+'''
+
 from html.parser import HTMLParser
 import urllib.request
 import os.path
@@ -30,10 +46,10 @@ class MyHTMLParser(HTMLParser):
 while True:
     print("Waiting for File")
     time.sleep(1)
-    for file in os.listdir(r"C:\Users\Jonathan\Documents\vt"):
+    for file in os.listdir(r"C:\Users\Jonathan\Documents"):
         if ".txt" in file:
             print ("File exist")
-            fullPath=os.path.join(r"C:\Users\Jonathan\Documents\vt", file)
+            fullPath=os.path.join(r"C:\Users\Jonathan\Documents", file)
             f = open(fullPath, "r")
             parser = MyHTMLParser()
             parser.feed(f.read())
@@ -41,7 +57,7 @@ while True:
             print(link)
             if link != "None":
                 print("Downloading: %s"%link)
-                req=urllib.request.urlretrieve(link, os.path.join(r"C:\Users\Jonathan\Documents\vt", file.split(".")[0]+'.mp4'))
+                req=urllib.request.urlretrieve(link, os.path.join(r"C:\Users\Jonathan\Documents", file.split(".")[0]+'.mp4'))
                 print(req)
             f.close()
-            os.remove(os.path.join(r"C:\Users\Jonathan\Documents\vt", file))
+            os.remove(os.path.join(r"C:\Users\Jonathan\Documents", file))
